@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
     <meta charset="utf-8"/>
     <title>Chat Rooms</title>
 </head>
 <body>
-    What chat room would you like to enter?<br>
-    <input id="room-name-input" type="text" size="100"><br>
-    <input id="room-name-submit" type="button" value="Enter">
+    <div class="container">
+        <h1>What chat room would you like to enter?</h1>
+        <div class="field has-addons">
+            <p class="control is-expanded">
+                <input id="room-name-input" type="text" class="input" placeholder="Channel name...">
+            </p>
+            <p class="control">
+                <button id="room-name-submit" type="button" class="button">
+                    Enter
+                </button>
+            </p>
+        </div>
+    </div>
 
     <script>
         document.querySelector('#room-name-input').focus();
