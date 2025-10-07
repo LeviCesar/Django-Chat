@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Django WebSocket Chat</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #chat-log { border: 1px solid #ccc; height: 300px; overflow-y: scroll; margin-bottom: 10px; padding: 5px; }
+        #chat-message-input { width: 80%; }
+        #chat-message-submit { width: 18%; }
+    </style>
+</head>
+<body>
+    <h2>WebSocket Chat</h2>
+    <div id="chat-log"></div>
+    <input id="chat-message-input" type="text" placeholder="Type your message..." autocomplete="off" />
+    <button id="chat-message-submit">Send</button>
+
+    <script>
+        const chatLog = document.querySelector('#chat-log');
+        const chatInput = document.querySelector('#chat-message-input');
+        const chatSubmit = document.querySelector('#chat-message-submit');
+        const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
+        const chatSocket = new WebSocket(
+            wsScheme + '://' + window.location.host + '/ws/chat/'
+        );
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            const message = document.createElement('div');
+            message.textContent = data.message;
+            chatLog.appendChild(message);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        chatSubmit.onclick = function(e) {
+            const message = chatInput.value;
+            if (message) {
+                chatSocket.send(JSON.stringify({
+                    'message': message
+                }));
+                chatInput.value = '';
+            }
+        };
+
+        chatInput.onkeyup = function(e) {
+            if (e.key === 'Enter') {
+                chatSubmit.click();
+            }
+        };
+    </script>
+</body>
+</html>
