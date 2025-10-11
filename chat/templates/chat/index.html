@@ -9,6 +9,9 @@
     <div class="container">
         <h1>What chat room would you like to enter?</h1>
         <div class="field has-addons">
+            {% comment %} <p class="control is-expanded">
+                <input id="room-user-input" type="text" class="input" placeholder="John Due">
+            </p> {% endcomment %}
             <p class="control is-expanded">
                 <input id="room-name-input" type="text" class="input" placeholder="Channel name...">
             </p>
@@ -23,7 +26,7 @@
     <script>
         document.querySelector('#room-name-input').focus();
         document.querySelector('#room-name-input').onkeyup = function(e) {
-            if (e.key === 'Enter') {  // enter, return
+            if (e.key === 'Enter') {
                 document.querySelector('#room-name-submit').click();
             }
         };
