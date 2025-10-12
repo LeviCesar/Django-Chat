@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-    path('auth/', include('auth_users.urls')),
-    path("chat/", include("chat.urls", namespace="chat")),
     path('admin/', admin.site.urls),
+    path('account/', include('account.urls')),
+    path('chat/', include('chat.urls')),
 ]
