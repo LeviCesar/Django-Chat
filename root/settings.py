@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'widget_tweaks',
+    'auth_users',
     'daphne',
     'chat',
     'django.contrib.admin',
@@ -57,7 +59,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'chat' / 'templates'
+            BASE_DIR / 'chat' / 'templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

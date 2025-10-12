@@ -11,8 +11,8 @@ Welcome to **Django Chat**, a web-based chat application built using the Django 
 
 ## Requirements
 
-- Python 3.8+
-- Django 4.x
+- Python 3.12+
+- Django 5.x
 - Channels library for WebSocket support
 
 ## Installation
